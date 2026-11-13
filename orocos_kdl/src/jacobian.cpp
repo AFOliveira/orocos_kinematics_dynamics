@@ -56,26 +56,6 @@ namespace KDL
         data.conservativeResize(Eigen::NoChange,new_nr_of_columns);
     }
 
-    double Jacobian::operator()(unsigned int i,unsigned int j)const
-    {
-        return data(i,j);
-    }
-
-    double& Jacobian::operator()(unsigned int i,unsigned int j)
-    {
-        return data(i,j);
-    }
-
-    unsigned int Jacobian::rows()const
-    {
-        return static_cast<unsigned int>(data.rows());
-    }
-
-    unsigned int Jacobian::columns()const
-    {
-        return static_cast<unsigned int>(data.cols());
-    }
-
     void SetToZero(Jacobian& jac)
     {
         jac.data.setZero();
