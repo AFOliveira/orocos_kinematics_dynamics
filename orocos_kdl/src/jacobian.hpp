@@ -57,10 +57,10 @@ namespace KDL
 
         ~Jacobian();
 
-        double operator()(unsigned int i,unsigned int j)const;
-        double& operator()(unsigned int i,unsigned int j);
-        unsigned int rows()const;
-        unsigned int columns()const;
+        double operator()(unsigned int i,unsigned int j)const { return data(i,j); }
+        double& operator()(unsigned int i,unsigned int j) { return data(i,j); }
+        unsigned int rows()const { return static_cast<unsigned int>(data.rows()); }
+        unsigned int columns()const { return static_cast<unsigned int>(data.cols()); }
 
         friend void SetToZero(Jacobian& jac);
 

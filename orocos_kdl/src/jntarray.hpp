@@ -26,6 +26,7 @@
 #include "jacobian.hpp"
 
 #include <Eigen/Core>
+#include <cassert>
 
 namespace KDL
 {
@@ -116,7 +117,11 @@ class MyTask : public RTT::TaskContext
          * @return the joint value at position i, starting from 0
          * @pre 0 != size (ie non-default constructor or resize() called)
          */
-        double operator()(unsigned int i,unsigned int j=0)const;
+        double operator()(unsigned int i,unsigned int j=0)const
+        {
+            assert(j==0);
+            return data(i);
+        }
         /**
          * set_item operator, again if a second value is given it
          *should be zero.
@@ -125,12 +130,16 @@ class MyTask : public RTT::TaskContext
          *from zero.
          * @pre 0 != size (ie non-default constructor or resize() called)
          */
-        double& operator()(unsigned int i,unsigned int j=0);
+        double& operator()(unsigned int i,unsigned int j=0)
+        {
+            assert(j==0);
+            return data(i);
+        }
         /**
          * Returns the number of rows (size) of the array
          *
          */
-        unsigned int rows()const;
+        unsigned int rows()const { return static_cast<unsigned int>(data.rows()); }
         /**
          * Returns the number of columns of the array, always 1.
          */
